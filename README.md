@@ -46,6 +46,32 @@ python src/main.py
 3. **Machine Learning:** Vorhersagemodell für BIP pro Kopf (geplant)
 4. **Visualisierung:** Darstellung der Ergebnisse
 
+---
+
+## Wie funktioniert das Projekt?
+
+Das Projekt besteht aus drei Jupyter Notebooks, die aufeinander aufbauen. Die Notebooks dokumentieren die Analyse und begründen alle Entscheidungen. Der wiederverwendbare Code liegt in `src/` und wird über `main.py` ausgeführt.
+
+### Notebook 1: Explorative Datenanalyse (`01_eda.ipynb`)
+
+Hier lernen wir den Datensatz kennen: Wie sind die Daten strukturiert? Welche Indikatoren gibt es? Wie viele fehlende Werte haben wir? Welcher Zeitraum ist gut abgedeckt?
+
+Am Ende wissen wir, was wir in der Datenaufbereitung tun müssen.
+
+### Notebook 2: Datenaufbereitung (`02_data_preparation.ipynb`)
+
+Hier dokumentieren wir die Entscheidungen für die Datentransformation: Welche Länder und Indikatoren behalten wir? Welchen Zeitraum? Welches Format brauchen wir für die Analyse?
+
+Die Entscheidungen werden begründet, der eigentliche Code landet in `src/features/build_features.py`. Output sind zwei CSV-Dateien in `data/processed/`.
+
+### Notebook 3: Hypothesentests (`03_hypothesis_testing.ipynb`)
+
+Hier testen wir die vier Hypothesen mit statistischen Tests (Pearson/Spearman-Korrelation, Fisher's z-Transformation, Steiger's Z-Test). Jeder Test wird durchgeführt, visualisiert und interpretiert.
+
+Die Ergebnisse beantworten direkt unsere drei Forschungsfragen.
+
+---
+
 ## Autor
 
 Jan Vogt – Universität Jena, 3. Semester
