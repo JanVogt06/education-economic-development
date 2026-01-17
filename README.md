@@ -5,15 +5,15 @@ Eine Analyse des Zusammenhangs zwischen Bildungsindikatoren und wirtschaftlicher
 ## Forschungsfragen
 
 1. **RQ1:** Gibt es einen Zusammenhang zwischen Bildung und wirtschaftlicher Entwicklung?
-2. **RQ2:** Welche Faktoren beeinflussen das BIP pro Kopf eines Landes am stärksten?
-3. **RQ3:** Wie hat sich der Zusammenhang zwischen Bildung und BIP über die Jahrzehnte verändert?
+2. **RQ2:** Welche Faktoren beeinflussen das BIP pro Kopf am stärksten?
+3. **RQ3:** Wie hat sich der Zusammenhang zwischen Bildung und BIP über die Jahrzehnte entwickelt?
 
 ## Hypothesen
 
-- **H1:** Die Einschulungsrate in der Sekundarstufe korreliert signifikant positiv mit dem BIP pro Kopf. *(RQ1)*
-- **H2:** Länder mit höheren Bildungsausgaben (% des BIP) haben ein signifikant höheres BIP pro Kopf. *(RQ1)*
-- **H3:** Die Einschulungsrate hat einen stärkeren Zusammenhang mit dem BIP pro Kopf als die Bildungsausgaben. *(RQ2)*
-- **H4:** Der Zusammenhang zwischen Bildung und BIP ist in den letzten 30 Jahren stärker geworden. *(RQ3)*
+- **H1:** Positive Korrelation zwischen Sekundarschuleinschreibung und BIP pro Kopf *(RQ1)*
+- **H2:** Positive Korrelation zwischen Bildungsausgaben (% BIP) und BIP pro Kopf *(RQ1)*
+- **H3:** Die Korrelation Bildung-BIP ist in den 2010ern stärker als in den 1990ern *(RQ3)*
+- **H4:** Tertiärbildung korreliert stärker mit BIP als Primärbildung *(RQ2)*
 
 ## Datenquelle
 
@@ -43,14 +43,14 @@ python src/main.py
 
 1. **Explorative Datenanalyse:** Überblick über verfügbare Indikatoren, Datenqualität, fehlende Werte
 2. **Statistische Tests:** Korrelationsanalysen, Signifikanztests für die Hypothesen
-3. **Machine Learning:** Vorhersagemodell für BIP pro Kopf (geplant)
+3. **Machine Learning:** Random Forest zur BIP-Vorhersage mit Feature Importance Analyse
 4. **Visualisierung:** Darstellung der Ergebnisse
 
 ---
 
 ## Wie funktioniert das Projekt?
 
-Das Projekt besteht aus drei Jupyter Notebooks, die aufeinander aufbauen. Die Notebooks dokumentieren die Analyse und begründen alle Entscheidungen. Der wiederverwendbare Code liegt in `src/` und wird über `main.py` ausgeführt.
+Das Projekt besteht aus vier Jupyter Notebooks, die aufeinander aufbauen. Die Notebooks dokumentieren die Analyse und begründen alle Entscheidungen. Der wiederverwendbare Code liegt in `src/` und wird über `main.py` ausgeführt.
 
 ### Notebook 1: Explorative Datenanalyse (`01_eda.ipynb`)
 
@@ -66,9 +66,32 @@ Die Entscheidungen werden begründet, der eigentliche Code landet in `src/featur
 
 ### Notebook 3: Hypothesentests (`03_hypothesis_testing.ipynb`)
 
-Hier testen wir die vier Hypothesen mit statistischen Tests (Pearson/Spearman-Korrelation, Fisher's z-Transformation, Steiger's Z-Test). Jeder Test wird durchgeführt, visualisiert und interpretiert.
+Hier testen wir die vier Hypothesen mit statistischen Tests (Pearson/Spearman-Korrelation, Fisher's z-Transformation). Jeder Test wird durchgeführt, visualisiert und interpretiert.
 
 Die Ergebnisse beantworten direkt unsere drei Forschungsfragen.
+
+### Notebook 4: Machine Learning (`04_modeling.ipynb`)
+
+Hier dokumentieren wir die Entscheidungen für das Vorhersagemodell: Warum Random Forest? Welche Features? Wie gehen wir mit fehlenden Werten um?
+
+Der Code liegt in `src/features/train_model.py`. Output ist ein trainiertes Modell in `models/` sowie eine Feature Importance Analyse.
+
+---
+
+## Ergebnisse
+
+| Hypothese | Ergebnis | Signifikant? |
+|-----------|----------|--------------|
+| H1: Sekundarbildung ↔ BIP | ρ = 0.80 | ✓ Ja |
+| H2: Bildungsausgaben ↔ BIP | ρ = 0.26 | ✓ Ja (schwach) |
+| H3: 1990er → 2010er | 0.71 → 0.76 | ✓ Ja |
+| H4: Tertiär vs. Primär | 0.77 vs. 0.06 | ✓ Ja |
+
+**Feature Importance (Random Forest):**
+1. Sekundarbildung (43%)
+2. Tertiärbildung (21%)
+3. Bildungsausgaben (20%)
+4. Primärbildung (16%)
 
 ---
 
